@@ -58,10 +58,13 @@ bool stopper(const NUC::BaseSolver<double>& solver) {
 
 std::string GetInfo(const NUC::Sub<double>& sub, NUC::RecordSupplier<double>& rs)
 {
-   std::stringstream ss;
-   ss << "Box: " <<  snowgoose::BoxUtils::toString(sub.mBox) << '\n' \
-      << "LB: " << sub.mScore << '\n' \
-      << "UB: " << rs.getBound(sub.mBox);
+   std::stringstream ss;  
+   std::string str = snowgoose::BoxUtils::toString(sub.mBox);
+   std::size_t x = str.find('x');
+   if(x != std::string::npos)
+       str.replace(x, 1, "x\n");
+   ss << "Box:\n" << str << '\n' \
+      << " LB: " << sub.mScore << '\n' << " UB: " << rs.getBound(sub.mBox);
    return ss.str();
 }
 
