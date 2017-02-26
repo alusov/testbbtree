@@ -10,7 +10,7 @@
  *
  * Created on December 10, 2016, 6:42 PM
  */
-#define TESTBBTREE
+#define TREEVIS
 #include <dirent.h>
 #include <string.h>
 #include <sstream>
@@ -37,8 +37,8 @@
 
 void clear()
 {
-    //note current folder must be TESTBBTREE. Run system("exec pwd") to check it.
-    system("exec rm ./../bbtree/data/*.*");
+    system("exec pwd");
+    system("exec rm ./../data/*.*");
 }
 
 int is_equal(double x, double y) 
@@ -74,7 +74,7 @@ int main() {
     const int n = 2;
 
     // Setup problem
-    OPTITEST::Ackley1ProblemFactory2 fact(0.9, 1.2, -0.1, 0.2);
+    OPTITEST::Ackley1ProblemFactory fact({{0.9, 1.2},{ -0.1, 0.2}});
     COMPI::MPProblem<double> *mpp = fact.getProblem();
 
     //Setup bag of sub problems
